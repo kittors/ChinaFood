@@ -1,19 +1,8 @@
 # vue2-vant
 
-## Project setup
-```
-yarn install
-```
+## 项目文件采用 vue2 + vantUI + axios 技术
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<p>
+vantUI 文档说明：
+https://youzan.github.io/vant/#/zh-CN/cell
+</p>
