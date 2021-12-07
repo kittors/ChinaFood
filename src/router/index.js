@@ -10,6 +10,26 @@ const routes = [
     name: "Home",
     component: Home,
   },
+  {
+    path: "/setting",
+    name: "Setting",
+    component: () => import("../views/Setting.vue"),
+  },
+  {
+    path: "/me",
+    name: "Me",
+    component: () => import("../views/Me.vue"),
+  },
+  {
+    path: "/collections",
+    name: "Collections",
+    component: () => import("../views/Collections.vue"),
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login_Register.vue"),
+  },
 ]
 
 const router = new VueRouter({

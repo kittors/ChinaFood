@@ -1,14 +1,14 @@
 <template>
   <div>
-    <my-header style="margin-bottom: 50px" />
+    <my-header />
     <van-tabs v-model="active">
       <van-tab title="推荐">
-        <van-grid :gutter="10">
+        <van-grid :column-num="2">
           <van-grid-item
-            v-for="value in 40"
+            v-for="value in 12"
             :key="value"
             icon="photo-o"
-            text="文字1231231232314124"
+            text="红烧肉"
           />
         </van-grid>
       </van-tab>
