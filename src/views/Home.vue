@@ -1,22 +1,17 @@
 <template>
   <div>
     <my-header />
-    <van-tabs v-model="active">
-      <van-tab title="推荐">
+    <van-tabs v-model="active" v-if="data">
+      <van-tab :title="item" v-for="(item, index) in data" :key="index">
         <van-grid :column-num="2">
           <van-grid-item
-            v-for="value in 12"
+            v-for="value in 20"
             :key="value"
             icon="photo-o"
-            text="红烧肉"
+            :text="item"
           />
         </van-grid>
       </van-tab>
-      <van-tab title="川菜">川菜</van-tab>
-      <van-tab title="鲁菜">鲁菜</van-tab>
-      <van-tab title="徽菜">徽菜</van-tab>
-      <van-tab title="粤菜">粤菜</van-tab>
-      <van-tab title="江苏菜">江苏菜</van-tab>
     </van-tabs>
   </div>
 </template>
@@ -28,6 +23,19 @@ export default {
   data() {
     return {
       active: 0,
+      data: [
+        "推荐",
+        "川菜",
+        "鲁菜",
+        "徽菜",
+        "粤菜",
+        "浙江菜",
+        "江苏菜",
+        "早餐",
+        "晚餐",
+        "午餐",
+        "糕点",
+      ],
     }
   },
 }
