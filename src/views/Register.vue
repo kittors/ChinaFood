@@ -1,6 +1,6 @@
 <template>
   <div class="tab">
-    <div class="title">用户登录</div>
+    <div class="title">用户注册</div>
     <div>
       <van-form validate-first @failed="onFailed">
         <!-- 通过 pattern 进行正则校验 -->
@@ -21,9 +21,18 @@
           placeholder="请输入密码"
           :rules="[{ password, message: '只能由6-20个字母、数字、下划线' }]"
         />
+        <van-field
+          class="password"
+          type="password"
+          v-model="value3"
+          name="validator"
+          label="验证密码"
+          placeholder="请再次输入密码"
+          :rules="[{ validator, message: '密码与上面不一致,请重新输入密码' }]"
+        />
         <div style="margin: 16px">
           <van-button round block type="info" native-type="submit">
-            登录
+            注册
           </van-button>
         </div>
       </van-form>
@@ -37,7 +46,7 @@
         or
       </van-divider>
       <div style="margin: 16px">
-        <van-button round block to="/register"> 注册 </van-button>
+        <van-button round block to="/login"> 登录 </van-button>
       </div>
     </div>
   </div>
@@ -57,6 +66,14 @@ export default {
   methods: {
     onFailed(errorInfo) {
       console.log("failed", errorInfo)
+    },
+    // 校验函数返回 true 表示校验通过，false 表示不通过
+    validator(val) {
+      if (this.value3 == this.value2) {
+        return true
+      } else {
+        return false
+      }
     },
   },
 }
