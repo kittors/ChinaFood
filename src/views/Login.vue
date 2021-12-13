@@ -21,8 +21,20 @@
           placeholder="请输入密码"
           :rules="[{ password, message: '只能由6-20个字母、数字、下划线' }]"
         />
+        <van-checkbox v-model="checked" style="margin-top: 20px">
+          我已阅读并同意
+          <router-link to="/">用户协议</router-link>
+          和
+          <router-link to="/">隐私政策</router-link>
+        </van-checkbox>
         <div style="margin: 16px">
-          <van-button round block type="info" native-type="submit">
+          <van-button
+            round
+            block
+            type="info"
+            native-type="submit"
+            :disabled="!checked"
+          >
             登录
           </van-button>
         </div>
@@ -47,6 +59,7 @@
 export default {
   data() {
     return {
+      checked: true,
       value1: "",
       value2: "",
       value3: "",
