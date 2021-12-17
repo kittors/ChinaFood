@@ -2,19 +2,27 @@
   <div class="tab">
     <div class="title">用户注册</div>
     <div>
-      <van-form validate-first @failed="onFailed">
+      <van-form validate-first @failed="onFailed" @submit="onSubmit">
         <!-- 通过 pattern 进行正则校验 -->
         <van-field
-          class="phone"
-          v-model="value1"
-          name="phone"
-          label="手机号"
-          placeholder="请输入手机号"
-          :rules="[{ phone, message: '请输入正确手机号' }]"
+          class="username"
+          v-model="username"
+          name="用户名"
+          label="用户名"
+          placeholder="用户名"
+          :rules="[{ required: true, message: '请填写用户名' }]"
+        />
+        <van-field
+          class="email"
+          v-model="email"
+          name="pattern"
+          label="邮箱"
+          placeholder="请输入邮箱"
+          :rules="[{ pattern, message: '请输入正确邮箱' }]"
         />
         <van-field
           class="password"
-          v-model="value2"
+          v-model="pwd"
           type="password"
           name="password"
           label="密码"
@@ -24,7 +32,7 @@
         <van-field
           class="password"
           type="password"
-          v-model="value3"
+          v-model="yz_pwd"
           name="validator"
           label="验证密码"
           placeholder="请再次输入密码"
@@ -69,10 +77,12 @@ export default {
   data() {
     return {
       checked: true,
-      value1: "",
-      value2: "",
-      value3: "",
-      phone: /^1[3,9]\d{9}$/,
+      username: "",
+      pwd: "",
+      yz_pwd: "",
+      email: "",
+      pattern:
+        /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/, //邮箱正则验证
       password: /^(\w){6,20}$/, //只能输入6-20个字母、数字、下划线
     }
   },
@@ -87,6 +97,18 @@ export default {
       } else {
         return false
       }
+    },
+    onSubmit(values) {
+      // console.log(values)
+      let params = `email=${this.email}&password=${this.pwd}&username=${this.username}`
+      this.axios.post("/register", params).then((res) => {
+        // console.log(res)
+        if (res.data.code == 200) {
+          console.log("登录成功")
+        } else {
+          console.log("登录失败")
+        }
+      })
     },
   },
 }
@@ -105,9 +127,8 @@ export default {
     font-weight: bold;
     text-align: center;
   }
-  .phone {
-    border: 1px solid #ebedf0;
-  }
+  .username,
+  .email,
   .password {
     border: 1px solid #ebedf0;
   }

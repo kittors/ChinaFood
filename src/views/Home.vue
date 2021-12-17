@@ -38,6 +38,16 @@ export default {
       ],
     }
   },
+  methods: {
+    ReqFoodCategory() {
+      this.axios.get("/foodCategory").then((res) => {
+        console.log(res)
+      })
+    },
+  },
+  mounted() {
+    this.ReqFoodCategory()
+  },
 }
 </script>
 

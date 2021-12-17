@@ -2,24 +2,22 @@
   <div class="tab">
     <div class="title">用户登录</div>
     <div>
-      <van-form validate-first @failed="onFailed">
+      <van-form validate-first @failed="onFailed" @submit="onSubmit">
         <!-- 通过 pattern 进行正则校验 -->
         <van-field
-          class="phone"
-          v-model="value1"
-          name="phone"
-          label="手机号"
-          placeholder="请输入手机号"
-          :rules="[{ phone, message: '请输入正确手机号' }]"
+          v-model="username"
+          name="用户名"
+          label="用户名"
+          placeholder="用户名"
+          :rules="[{ required: true, message: '请填写用户名' }]"
         />
         <van-field
-          class="password"
-          v-model="value2"
+          v-model="pwd"
           type="password"
-          name="password"
+          name="密码"
           label="密码"
-          placeholder="请输入密码"
-          :rules="[{ password, message: '只能由6-20个字母、数字、下划线' }]"
+          placeholder="密码"
+          :rules="[{ required: true, message: '请填写密码' }]"
         />
         <van-checkbox v-model="checked" style="margin-top: 20px">
           我已阅读并同意
@@ -60,16 +58,26 @@ export default {
   data() {
     return {
       checked: true,
-      value1: "",
-      value2: "",
-      value3: "",
-      phone: /^1[3,9]\d{9}$/,
+      username: "",
+      pwd: "",
       password: /^(\w){6,20}$/, //只能输入6-20个字母、数字、下划线
     }
   },
   methods: {
     onFailed(errorInfo) {
       console.log("failed", errorInfo)
+    },
+    onSubmit(values) {
+      // console.log("submit", values)
+      let params = `username=${this.username}&password=${this.pwd}`
+      this.axios.post("/login", params).then((res) => {
+        console.log(res)
+        if (res.data.code == 200) {
+          console.log("登录成功")
+        } else {
+          console.log("登录失败")
+        }
+      })
     },
   },
 }
