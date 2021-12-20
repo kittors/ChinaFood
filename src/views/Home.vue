@@ -50,14 +50,14 @@ export default {
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
       setTimeout(() => {
         //获取新数据
-        console.log(this.activeName)
+        // console.log(this.activeName)
         if (this.activeName == "推荐") {
           this.activeName = ""
         }
-        console.log(this.activeName)
+        // console.log(this.activeName)
         let url = `categorySearch?category_name=${this.activeName}`
         this.axios.get(url).then((res) => {
-          console.log(res)
+          // console.log(res)
           // console.log(res.data.result)
           this.categorySearch.push(...res.data.result)
         })
