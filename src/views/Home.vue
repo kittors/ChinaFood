@@ -53,14 +53,18 @@ export default {
         // console.log(this.activeName)
         if (this.activeName == "推荐") {
           this.activeName = ""
+          this.axios.get("recommend").then((res) => {
+            // console.log(res)
+            this.categorySearch.push(...res.data.result)
+          })
+        } else {
+          // console.log(this.activeName)
+          let url = `categorySearch?category_name=${this.activeName}`
+          this.axios.get(url).then((res) => {
+            // console.log(res.data.result)
+            this.categorySearch.push(...res.data.result)
+          })
         }
-        // console.log(this.activeName)
-        let url = `categorySearch?category_name=${this.activeName}`
-        this.axios.get(url).then((res) => {
-          // console.log(res)
-          // console.log(res.data.result)
-          this.categorySearch.push(...res.data.result)
-        })
         // 加载状态结束
         this.loading = false
 
@@ -83,14 +87,17 @@ export default {
     },
     // 查询对应title下的菜品
     onClick(name, title) {
-      // console.log(name, title)
-      // this.active_name = title
-      let url = `categorySearch?category_name=${title}`
-      this.axios.get(url).then((res) => {
-        console.log(res)
-        // console.log(res.data.result)
-        this.categorySearch = res.data.result
-      })
+      if (title == "推荐") {
+        this.axios.get("recommend").then((res) => {
+          // console.log(res)
+          this.categorySearch = res.data.result
+        })
+      } else {
+        let url = `categorySearch?category_name=${title}`
+        this.axios.get(url).then((res) => {
+          this.categorySearch = res.data.result
+        })
+      }
     },
   },
   mounted() {
@@ -99,9 +106,8 @@ export default {
   },
   // 首页首次加载随机显示数据表
   created() {
-    let url = `categorySearch?category_name=`
-    this.axios.get(url).then((res) => {
-      console.log(res)
+    this.axios.get("recommend").then((res) => {
+      // console.log(res)
       this.categorySearch = res.data.result
     })
   },
