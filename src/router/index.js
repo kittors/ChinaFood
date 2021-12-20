@@ -35,6 +35,11 @@ const routes = [
     name: "Register",
     component: () => import("../views/Register.vue"),
   },
+  {
+    path: "/detailpage",
+    name: "DetailPage",
+    component: () => import("../views/DetailPage.vue"),
+  },
 ]
 
 const router = new VueRouter({
