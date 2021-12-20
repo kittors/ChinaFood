@@ -1,5 +1,8 @@
 <template>
-  <div>这是detailpage页面</div>
+  <div>
+    
+    
+  </div>
 </template>
 
 <script>
@@ -7,7 +10,11 @@ export default {
   data() {
     return {
       data: this.$route.query.item,
+
     }
+  },
+  methods: {
+    
   },
   mounted() {
     console.log(this.data)
