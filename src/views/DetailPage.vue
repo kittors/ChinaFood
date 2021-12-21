@@ -1,7 +1,6 @@
 <template>
   <div>
-    
-    
+    <van-image :src="require('/public/banner/banner1.jpg')" />
   </div>
 </template>
 
@@ -10,12 +9,9 @@ export default {
   data() {
     return {
       data: this.$route.query.item,
-
     }
   },
-  methods: {
-    
-  },
+  methods: {},
   mounted() {
     console.log(this.data)
   },
