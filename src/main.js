@@ -4,7 +4,9 @@ import router from "./router"
 import store from "./store"
 import "./utils/axios"
 import "./utils/vantui"
-
+if (module.hot) {
+  module.hot.accept();
+}
 Vue.config.productionTip = false
 
 new Vue({

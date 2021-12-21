@@ -32,6 +32,7 @@
       block
       id="van_button"
       v-show="true"
+      to="/login"
     />
     <van-button
       type="danger"

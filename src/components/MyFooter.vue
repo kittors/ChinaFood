@@ -8,11 +8,11 @@
           <img :src="props.active ? icon.active : icon.inactive" />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item icon="friends-o" :badge="g_badge" to="/login"
-        >个人</van-tabbar-item
+      <van-tabbar-item icon="guide-o" :badge="g_badge" to="/login"
+        >发现</van-tabbar-item
       >
-      <van-tabbar-item icon="setting-o" :badge="s_badge" to="/setting"
-        >设置</van-tabbar-item
+      <van-tabbar-item icon="user-o" :badge="s_badge" to="/aboutme"
+        >我的</van-tabbar-item
       >
     </van-tabbar>
   </div>
@@ -29,9 +29,9 @@ export default {
         active: require("../assets/icon/collection_a.svg"),
         inactive: require("../assets/icon/collection_i.svg"),
       },
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

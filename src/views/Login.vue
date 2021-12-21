@@ -61,26 +61,30 @@ export default {
       username: "",
       pwd: "",
       password: /^(\w){6,20}$/, //只能输入6-20个字母、数字、下划线
-    }
+    };
   },
   methods: {
     onFailed(errorInfo) {
-      console.log("failed", errorInfo)
+      console.log("failed", errorInfo);
     },
     onSubmit(values) {
       // console.log("submit", values)
-      let params = `username=${this.username}&password=${this.pwd}`
+      let params = `username=${this.username}&password=${this.pwd}`;
       this.axios.post("/login", params).then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.data.code == 200) {
-          console.log("登录成功")
+          console.log("登录成功");
         } else {
-          console.log("登录失败")
+          console.log("登录失败");
         }
-      })
+      });
     },
   },
-}
+  created() {
+    console.log(this.$emit);
+    this.$emit("footer", false);
+  },
+};
 </script>
 
 <style lang="scss" scoped>
