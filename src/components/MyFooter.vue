@@ -8,7 +8,7 @@
           <img :src="props.active ? icon.active : icon.inactive" />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item icon="guide-o" :badge="g_badge" to="/login"
+      <van-tabbar-item icon="guide-o" :badge="g_badge" to="/find"
         >发现</van-tabbar-item
       >
       <van-tabbar-item icon="user-o" :badge="s_badge" to="/aboutme"
@@ -29,9 +29,9 @@ export default {
         active: require("../assets/icon/collection_a.svg"),
         inactive: require("../assets/icon/collection_i.svg"),
       },
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped></style>
