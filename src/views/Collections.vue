@@ -5,14 +5,14 @@
     >
       我的收藏
     </van-divider>
-    <van-grid :column-num="2">
+    <!-- <van-grid :column-num="2">
       <van-grid-item
         v-for="value in 20"
         :key="value"
         icon="photo-o"
         text="我的收藏"
-      />
-    </van-grid>
+      /> -->
+    <!-- </van-grid> -->
   </div>
 </template>
 

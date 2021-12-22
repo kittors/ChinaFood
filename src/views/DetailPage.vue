@@ -1,6 +1,15 @@
 <template>
   <div>
-    <van-image :src="require('/public/banner/banner1.jpg')" />
+    <van-nav-bar :title="data.dishes_name">
+      <template #left>
+        <van-icon name="arrow-left" size="18" @click="beforeNav" />
+      </template>
+      <template #right>
+        <van-icon name="like-o" size="18" />
+      </template>
+    </van-nav-bar>
+    <van-image :src="data.dishes_pic" />
+    <span>{{ data.Material }}</span>
   </div>
 </template>
 
@@ -11,7 +20,13 @@ export default {
       data: this.$route.query.item,
     }
   },
-  methods: {},
+
+  methods: {
+    beforeNav() {
+      // console.log(this.$router.back)
+      this.$router.back()
+    },
+  },
   mounted() {
     console.log(this.data)
   },
