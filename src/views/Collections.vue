@@ -5,14 +5,16 @@
     >
       我的收藏
     </van-divider>
-    <!-- <van-grid :column-num="2">
+    <van-grid :column-num="2" :gutter="5">
       <van-grid-item
-        v-for="value in 20"
-        :key="value"
-        icon="photo-o"
-        text="我的收藏"
-      /> -->
-    <!-- </van-grid> -->
+        v-for="(item, index) in data"
+        :key="index"
+        :to="{ path: '/detailpage', query: { item, data } }"
+      >
+        <van-image :src="item.dishes_pic" />
+        <span>{{ item.dishes_name }}</span>
+      </van-grid-item>
+    </van-grid>
   </div>
 </template>
 
@@ -21,7 +23,19 @@ export default {
   data() {
     return {
       active: 0,
+      data: [],
     }
+  },
+  mounted() {
+    let params = "user_id=1"
+    this.axios.post("/query_user_collection", params).then((res) => {
+      console.log(res)
+
+      for (let i = 0; i < res.data.result.length; i++) {
+        this.data.push(JSON.parse(res.data.result[i].data))
+      }
+      console.log(this.data)
+    })
   },
 }
 </script>

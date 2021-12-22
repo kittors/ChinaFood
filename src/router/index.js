@@ -11,7 +11,6 @@ const routes = [
     component: Home,
     meta: {
       keepAlive: true,
-      isBack: false,
     },
   },
   {
@@ -27,6 +26,9 @@ const routes = [
     path: "/find",
     name: "Find",
     component: () => import("../views/Find.vue"),
+    meta: {
+      keepAlive: true,
+    },
   },
   {
     path: "/setting",
@@ -42,6 +44,9 @@ const routes = [
     path: "/collections",
     name: "Collections",
     component: () => import("../views/Collections.vue"),
+    meta: {
+      keepAlive: true,
+    },
   },
   {
     path: "/login",
@@ -57,6 +62,9 @@ const routes = [
     path: "/detailpage",
     name: "DetailPage",
     component: () => import("../views/DetailPage.vue"),
+    meta: {
+      keepAlive: true,
+    },
   },
 ]
 
