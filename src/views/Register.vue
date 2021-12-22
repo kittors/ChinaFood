@@ -1,5 +1,5 @@
 <template>
-  <div class="tab" @click="check">
+  <div class="tab" @click="check" @keydown.tab="check">
     <div class="title">用户注册</div>
     <div>
       <van-form validate-first @failed="onFailed" @submit="onSubmit">
@@ -47,6 +47,7 @@
             type="info"
             native-type="submit"
             :disabled="!checked"
+            @click.stop
           >
             注册
           </van-button>
@@ -62,7 +63,7 @@
         or
       </van-divider>
       <div style="margin: 16px">
-        <van-button round block to="/login"> 登录 </van-button>
+        <van-button round block to="/login" @click.stop> 登录 </van-button>
       </div>
     </div>
     <van-checkbox v-model="checked" style="margin-top: 40px; font-size: 12px">
@@ -87,12 +88,13 @@ export default {
       pm: "请输入邮箱",
       pattern:
         /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/, //邮箱正则验证
-      password: /^(\w){6,20}$/, //只能输入6-20个字母、数字、下划线
+      password: /^(?=.*\d)(?=.*[a-zA-Z])[\da-zA-Z~!@#$%^&*]{6,18}$/, //只能输入6-20个字母、数字、下划线
     };
   },
   methods: {
     onFailed(errorInfo) {
       console.log("failed", errorInfo);
+      this.pu = "";
     },
     // 校验函数返回 true 表示校验通过，false 表示不通过
     validator(val) {
@@ -106,11 +108,11 @@ export default {
       // console.log(values)
       let params = `email=${this.email}&password=${this.pwd}&username=${this.username}`;
       this.axios.post("/register", params).then((res) => {
-        // console.log(res)
+        console.log(res);
         if (res.data.code == 200) {
-          console.log("登录成功");
+          console.log("注册成功");
         } else {
-          console.log("登录失败");
+          console.log("注册失败");
         }
       });
     },
@@ -123,6 +125,7 @@ export default {
       let em_string = this.$refs.input_email.$el.className;
       let bool2 = reg.test(`${em_string}`);
       if (!bool2) this.pm = "";
+      let bool3 = this.pattern.test(this.email);
     },
   },
 };

@@ -45,7 +45,7 @@
         or
       </van-divider>
       <div style="margin: 16px">
-        <van-button round block to="/register"> 注册 </van-button>
+        <van-button round block to="/register" @click.stop> 注册 </van-button>
       </div>
     </div>
     <van-checkbox v-model="checked" style="margin-top: 40px; font-size: 12px">
@@ -72,6 +72,14 @@ export default {
   methods: {
     onFailed(errorInfo) {
       console.log("failed", errorInfo);
+      this.pu = "";
+      this.$dialog
+        .alert({
+          message: "用户名和密码不能为空",
+        })
+        .then(() => {
+          // on close
+        });
     },
     onSubmit(values) {
       // console.log("submit", values)
@@ -80,8 +88,18 @@ export default {
         console.log(res);
         if (res.data.code == 200) {
           console.log("登录成功");
+          this.$store.dispatch("getUser", this.username);
+          this.$router.replace("/aboutme");
         } else {
           console.log("登录失败");
+          this.onload;
+          this.$dialog
+            .alert({
+              message: "用户名或者密码错误",
+            })
+            .then(() => {
+              // on close
+            });
         }
       });
     },

@@ -61,6 +61,12 @@ export default {
     // 销毁背景色
     document.querySelector("body").removeAttribute("style");
   },
+  mounted() {
+    console.log(this.$store.state.user);
+    if(this.$store.state.user){
+      
+    }
+  },
 };
 </script>
 

@@ -17,6 +17,10 @@ const routes = [
   {
     path: "/aboutme",
     name: "AboutMe",
+    meta: {
+      keepAlive: true,
+      isBack: false,
+    },
     component: () => import("../views/AboutMe.vue"),
   },
   {
