@@ -81,8 +81,8 @@ export default {
     },
     ReqFoodCategory() {
       this.axios.get("/foodCategory").then((res) => {
+        // console.log(res)
         this.data = res.data.result
-        console.log(this.data)
       })
     },
     // 查询对应title下的菜品
@@ -102,13 +102,15 @@ export default {
   },
   mounted() {
     this.ReqFoodCategory()
-    console.log(this.$root)
+    // console.log(this.$root)
+    // console.log(this.data)
   },
   // 首页首次加载随机显示数据表
   created() {
     this.axios.get("recommend").then((res) => {
       // console.log(res)
       this.categorySearch = res.data.result
+      console.log(this.categorySearch)
     })
   },
 }
