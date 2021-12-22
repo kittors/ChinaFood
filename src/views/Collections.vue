@@ -15,6 +15,7 @@
         <span>{{ item.dishes_name }}</span>
       </van-grid-item>
     </van-grid>
+    <!-- <button @click="cesi"></button> -->
   </div>
 </template>
 
@@ -26,6 +27,11 @@ export default {
       data: [],
     }
   },
+  methods: {
+    // cesi() {
+    //   console.log(this.$store.state)
+    // },
+  },
   mounted() {
     let params = "user_id=1"
     this.axios.post("/query_user_collection", params).then((res) => {
@@ -33,6 +39,7 @@ export default {
 
       for (let i = 0; i < res.data.result.length; i++) {
         this.data.push(JSON.parse(res.data.result[i].data))
+        console.log(JSON.parse(res.data.result[i].data).dishes_id)
       }
       console.log(this.data)
     })

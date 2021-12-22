@@ -37,6 +37,7 @@ export default {
       step: "",
       like: "like-o",
       steps: ["做菜步骤:"],
+      dishes_id: [],
     }
   },
 
@@ -58,10 +59,23 @@ export default {
     },
   },
   mounted() {
-    console.log(this.data)
+    // console.log(this.data)
     this.value = this.data.score
     this.step = this.data.steps
     this.steps.push(...this.step.split(";"))
+  },
+  created() {
+    let params = "user_id=1"
+    this.axios.post("/query_user_collection", params).then((res) => {
+      console.log(res)
+      for (let i = 0; i < res.data.result.length; i++) {
+        // console.log()
+        this.dishes_id.push(JSON.parse(res.data.result[i].data).dishes_id)
+        if (this.data.dishes_id == this.dishes_id[i]) {
+          this.like = "like"
+        }
+      }
+    })
   },
 }
 </script>
