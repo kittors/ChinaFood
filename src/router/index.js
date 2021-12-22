@@ -62,9 +62,6 @@ const routes = [
     path: "/detailpage",
     name: "DetailPage",
     component: () => import("../views/DetailPage.vue"),
-    meta: {
-      keepAlive: true,
-    },
   },
 ]
 
