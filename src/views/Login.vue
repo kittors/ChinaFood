@@ -85,13 +85,15 @@ export default {
       // console.log("submit", values)
       let params = `username=${this.username}&password=${this.pwd}`;
       this.axios.post("/login", params).then((res) => {
-        console.log(res);
         if (res.data.code == 200) {
-          console.log("登录成功");
+          // console.log("登录成功");
           this.$store.dispatch("getUser", this.username);
+          this.axios.get(`/user?username=${this.username}`).then((res) => {
+            this.$store.dispatch("getUserId", res.data.result[0].user_id);
+          });
           this.$router.replace("/aboutme");
         } else {
-          console.log("登录失败");
+          // console.log("登录失败");
           this.onload;
           this.$dialog
             .alert({

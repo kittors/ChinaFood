@@ -1,15 +1,15 @@
 <template>
   <div>
     <van-card
-      v-show="false"
-      desc="ID:123"
+      v-show="show"
+      :desc="`ID:${this.$store.state.user_id}`"
       title="Hello World"
       class="goods-card"
       style="margin: 15px; border-radius: 10px"
       :thumb="require('/public/avatar/8.jpg')"
     />
     <van-card
-      v-show="true"
+      v-show="!show"
       title="未登录"
       class="goods-card"
       :thumb="require('/public/avatar/70.jpg')"
@@ -31,7 +31,7 @@
       text="登录账号"
       block
       id="van_button"
-      v-show="true"
+      v-show="!show"
       to="/login"
     />
     <van-button
@@ -39,7 +39,7 @@
       text="退出登录"
       block
       id="van_button"
-      v-show="false"
+      v-show="show"
     />
   </div>
 </template>
@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       checked: false,
+      show: true,
     };
   },
   beforeCreate() {
@@ -62,10 +63,7 @@ export default {
     document.querySelector("body").removeAttribute("style");
   },
   mounted() {
-    console.log(this.$store.state.user);
-    if(this.$store.state.user){
-      
-    }
+    console.log(this.$store.state.user_id);
   },
 };
 </script>

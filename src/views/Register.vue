@@ -111,8 +111,16 @@ export default {
         console.log(res);
         if (res.data.code == 200) {
           console.log("注册成功");
+          this.$router.replace("/login");
         } else {
           console.log("注册失败");
+          this.$dialog
+            .alert({
+              message: "用户名已经重复",
+            })
+            .then(() => {
+              // on close
+            });
         }
       });
     },
